@@ -1,0 +1,241 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Materials/Walls.tres" type="Material" id=1]
+[ext_resource path="res://Materials/Floor.tres" type="Material" id=2]
+[ext_resource path="res://Environment.tres" type="Environment" id=3]
+[ext_resource path="res://Lighting/LongHallLights.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Cameras/HallCam.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Lighting/HallLight.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Doors/ClassDoor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Doors/StairwayDoor.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Doors/ElevatorDoor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Ceiling/TriplePipe.tscn" type="PackedScene" id=10]
+[ext_resource path="res://ControllerManager.gd" type="Script" id=11]
+[ext_resource path="res://Main.gd" type="Script" id=12]
+[ext_resource path="res://Characters/Player.tscn" type="PackedScene" id=13]
+
+[node name="Main" type="Node"]
+script = ExtResource( 12 )
+
+[node name="Walls" type="CSGBox" parent="."]
+use_collision = true
+width = 30.0
+height = 2.5
+depth = 15.0
+material = ExtResource( 1 )
+
+[node name="Hallway" type="CSGCombiner" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5 )
+operation = 2
+
+[node name="CSGBox" type="CSGBox" parent="Walls/Hallway"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.66852 )
+width = 25.0
+height = 3.0
+depth = 3.5
+
+[node name="CSGBox2" type="CSGBox" parent="Walls/Hallway"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -0.6 )
+width = 3.5
+height = 3.0
+depth = 12.0
+
+[node name="CSGBox3" type="CSGBox" parent="Walls/Hallway"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -0.6 )
+width = 3.5
+height = 3.0
+depth = 12.0
+
+[node name="Doorways" type="CSGCombiner" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0.5 )
+operation = 2
+
+[node name="LongHallDoors" type="CSGCombiner" parent="Walls/Doorways"]
+
+[node name="CSGBox" type="CSGBox" parent="Walls/Doorways/LongHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.25, 2 )
+width = 1.0
+
+[node name="CSGBox2" type="CSGBox" parent="Walls/Doorways/LongHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.25, 2 )
+width = 1.0
+
+[node name="CSGBox3" type="CSGBox" parent="Walls/Doorways/LongHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, -0.25, 2 )
+width = 1.0
+
+[node name="CSGBox5" type="CSGBox" parent="Walls/Doorways/LongHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, -0.25, 6 )
+width = 1.0
+
+[node name="CSGBox6" type="CSGBox" parent="Walls/Doorways/LongHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.25, 6 )
+width = 1.0
+
+[node name="CSGBox7" type="CSGBox" parent="Walls/Doorways/LongHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.25, 6 )
+width = 1.0
+
+[node name="FarHallDoors" type="CSGCombiner" parent="Walls/Doorways"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5 )
+
+[node name="CSGBox10" type="CSGBox" parent="Walls/Doorways/FarHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.25, -6.5 )
+
+[node name="CSGBox11" type="CSGBox" parent="Walls/Doorways/FarHallDoors"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 14.5, -0.25, -1.5 )
+width = 1.0
+
+[node name="CSGBox4" type="CSGBox" parent="Walls/Doorways/FarHallDoors"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.79031, -0.252714, 0.0477815 )
+width = 1.0
+
+[node name="EHallDoors" type="CSGCombiner" parent="Walls/Doorways"]
+
+[node name="CSGBox8" type="CSGBox" parent="Walls/Doorways/EHallDoors"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.6565, -0.25, 3.72967 )
+width = 1.0
+
+[node name="CSGBox9" type="CSGBox" parent="Walls/Doorways/EHallDoors"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, -0.25, -7 )
+
+[node name="Floor" type="CSGBox" parent="Walls"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.50444, 0 )
+width = 50.0
+height = 0.5
+depth = 40.0
+material = ExtResource( 2 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource( 3 )
+
+[node name="Ceiliing Lights" type="Node" parent="."]
+
+[node name="LongHallLeft" parent="Ceiliing Lights" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0.75 )
+
+[node name="LongHallRight" parent="Ceiliing Lights" instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.961593, -0.0239975, 3.81229 )
+
+[node name="FarHall" type="Spatial" parent="Ceiliing Lights"]
+
+[node name="HallLight2" parent="Ceiliing Lights/FarHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10, 1.14214, 0.19853 )
+
+[node name="HallLight7" parent="Ceiliing Lights/FarHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 10, 1.14214, -2.80147 )
+
+[node name="HallLight5" parent="Ceiliing Lights/FarHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 13, 1.14214, -1.55147 )
+
+[node name="HallLight8" parent="Ceiliing Lights/FarHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 13, 1.14214, 3.94853 )
+
+[node name="HallLight6" parent="Ceiliing Lights/FarHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 11.5, 1.14214, -5.80147 )
+
+[node name="EHall" type="Spatial" parent="Ceiliing Lights"]
+
+[node name="HallLight" parent="Ceiliing Lights/EHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -11.5, 1.14214, -5.80147 )
+
+[node name="HallLight3" parent="Ceiliing Lights/EHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -13, 1.14214, -2.05147 )
+
+[node name="HallLight5" parent="Ceiliing Lights/EHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 1.14214, -2.05147 )
+
+[node name="HallLight4" parent="Ceiliing Lights/EHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -13, 1.14214, 0.94853 )
+
+[node name="HallLight7" parent="Ceiliing Lights/EHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -13, 1.14214, 3.94853 )
+
+[node name="HallLight6" parent="Ceiliing Lights/EHall" instance=ExtResource( 6 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -10, 1.14214, 0.94853 )
+
+[node name="Controllers" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="HallCam" parent="Controllers" instance=ExtResource( 5 )]
+transform = Transform( -0.707107, 0.183013, 0.683013, 0, 0.965926, -0.258819, -0.707107, -0.183013, -0.683013, -12, 0.5, 5 )
+turn_radii = Vector2( 25, 45 )
+
+[node name="HallCam2" parent="Controllers" instance=ExtResource( 5 )]
+transform = Transform( -0.707107, -0.183013, -0.683013, 0, 0.965926, -0.258819, 0.707107, -0.183013, -0.683013, 12.5, 0.5, 5.125 )
+turn_radii = Vector2( 25, 45 )
+
+[node name="Player" parent="Controllers" instance=ExtResource( 13 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 4 )
+
+[node name="Doors" type="Node" parent="."]
+
+[node name="LongHallLeft" type="Spatial" parent="Doors"]
+
+[node name="ClassDoor" parent="Doors/LongHallLeft" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -0.25, 2.37473 )
+
+[node name="ClassDoor2" parent="Doors/LongHallLeft" instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.25, 2.37473 )
+
+[node name="StairwayDoor2" parent="Doors/LongHallLeft" instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -8.50174, -0.25, 2.38347 )
+
+[node name="LongHallRight" type="Spatial" parent="Doors"]
+
+[node name="ClassDoor3" parent="Doors/LongHallRight" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8, -0.25, 5.96904 )
+
+[node name="ClassDoor4" parent="Doors/LongHallRight" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 1.5, -0.25, 5.96904 )
+
+[node name="ClassDoor5" parent="Doors/LongHallRight" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -8.5, -0.25, 5.96904 )
+
+[node name="FarHall" type="Spatial" parent="Doors"]
+
+[node name="FarDoubleDoors" type="Spatial" parent="Doors/FarHall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -6.146 )
+
+[node name="ClassDoor6" parent="Doors/FarHall/FarDoubleDoors" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, -0.25, 0 )
+
+[node name="ClassDoor7" parent="Doors/FarHall/FarDoubleDoors" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, -0.25, 0 )
+
+[node name="ClassDoor" parent="Doors/FarHall" instance=ExtResource( 7 )]
+transform = Transform( -4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 13.2963, -0.25, -1.53096 )
+
+[node name="StairwayDoor" parent="Doors/FarHall" instance=ExtResource( 8 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.69195, -0.25, 2.53749e-09 )
+
+[node name="EHall" type="Spatial" parent="Doors"]
+
+[node name="EDoubleDoors" type="Spatial" parent="Doors/EHall"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 0, -6.146 )
+
+[node name="ClassDoor6" parent="Doors/EHall/EDoubleDoors" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -0.5, -0.25, 0 )
+
+[node name="ClassDoor7" parent="Doors/EHall/EDoubleDoors" instance=ExtResource( 7 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.5, -0.25, 0 )
+
+[node name="ElevatorDoor" parent="Doors/EHall" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.2816, -1.25, 1 )
+
+[node name="ElevatorDoor2" parent="Doors/EHall" instance=ExtResource( 9 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -13.2816, -1.25, -2 )
+
+[node name="Ceiling" type="Node" parent="."]
+
+[node name="TriplePipe" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.125, 3.125 )
+
+[node name="TriplePipe3" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, -1, 0, -4.37114e-08, 1.91069e-15, -1, 1, -4.37114e-08, -4.37114e-08, -13.125, 1, 3.125 )
+
+[node name="TriplePipe2" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.125, 5.125 )
+
+[node name="TriplePipe4" parent="Ceiling" instance=ExtResource( 10 )]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12, 1.125, 5.125 )

@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Lighting/HallLight.tscn" type="PackedScene" id=1]
+
+[node name="LongHallLeft" type="Spatial"]
+
+[node name="HallLight" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.5, 1.14214, 1.94853 )
+
+[node name="HallLight6" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -9.25, 1.14214, 1.94853 )
+
+[node name="HallLight4" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -2.75, 1.14214, 1.94853 )
+
+[node name="HallLight5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 3.75, 1.14214, 1.94853 )
+
+[node name="HallLight2" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6, 1.14214, 1.94853 )
+
+[node name="HallLight3" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 7, 1.14214, 1.94853 )
