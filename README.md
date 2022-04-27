@@ -1,2 +1,2 @@
 # bond hall basement
- A Horror Game Set in the Bond Hall Basement
+ A Horror Game Set in WWU's Bond Hall Basement
